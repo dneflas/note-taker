@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const db = require('../../db/db.json');
-const createNewNote = require('../../lib/notes');
+const { createNewNote, deleteNote } = require('../../lib/notes');
 
 
 // api routes
@@ -13,9 +13,7 @@ router.get('/notes', (req, res) => {
 //when it's saved (look into npm packages that could do this for you).
 router.post('/notes', (req, res) => {
     const newNote = createNewNote(req.body, db);
-    console.log(newNote);
     res.json(newNote);
-
 });
 
 // DELETE /api/notes/:id should receive a query parameter containing
@@ -23,8 +21,9 @@ router.post('/notes', (req, res) => {
 // all notes from the db.json file, remove the note with the given id property, and 
 // then rewrite the notes to the db.json file.
 
-router.delete('notes/:id', (req, res) => {
-
+router.delete('/notes/:id', (req, res) => {
+    deleteNote(req.params.id, db);
+    res.send("note deleted");
 });
 
 module.exports = router;
