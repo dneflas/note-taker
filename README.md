@@ -2,7 +2,7 @@
 
   
   ![license badge](https://img.shields.io/badge/license-Mozilla%20Public%202.0-blue)
-    
+
   
   ## Description
 
